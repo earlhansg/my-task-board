@@ -5,23 +5,39 @@ import Done from "./components/Done";
 
 function App() {
   const [task, setTask] = useState({
-    todoBoard: ['Task 1', 'Task 2', 'Task 3'],
-    doneBoard: []
-  })
-  function handleOnDrag(e: React.DragEvent, cardType) {
-    console.log("handleOnDrag", cardType.id);
-    e.dataTransfer.setData("widgetType", cardType.taskName.concat('#' + cardType.id.toString()));
+    todoBoard: ["Task 1", "Task 2", "Task 3"],
+    doneBoard: [],
+  });
+
+  function handleOnDrag(e: React.DragEvent, cardType, board = "sss") {
+    e.dataTransfer.setData(
+      "widgetType",
+      `${cardType.taskName}#${cardType.id}#${board}`
+    );
   }
 
   function handleOnDrop(e: React.DragEvent) {
     const widgetType = e.dataTransfer.getData("widgetType");
-    const droppedTaskIndex = parseInt(widgetType.split('#')[1]);
-    const filteredTodo = task.todoBoard.filter((item, id) => id !== droppedTaskIndex);
-    console.log("filteredTodo", filteredTodo)
-    setTask((prev) => ({
-      ...prev,
-      todoBoard: [...filteredTodo],
-      doneBoard: [...prev.doneBoard, widgetType.split('#')[0]]}))
+    const droppedTaskIndex = parseInt(widgetType.split("#")[1]);
+    const boardType = widgetType.split("#")[2];
+    const originalLocation =
+      task[Object.keys(task).find((type) => type === boardType)];
+    const filteredItems = originalLocation.filter(
+      (item, id) => id !== droppedTaskIndex
+    );
+    if (boardType === "todoBoard") {
+      setTask((prev) => ({
+        ...prev,
+        todoBoard: [...filteredItems],
+        doneBoard: [...prev.doneBoard, widgetType.split("#")[0]],
+      }));
+    } else {
+      setTask((prev) => ({
+        ...prev,
+        todoBoard: [...prev.todoBoard, widgetType.split("#")[0]],
+        doneBoard: [...filteredItems],
+      }));
+    }
   }
 
   function handleDragOver(e: React.DragEvent) {
@@ -30,8 +46,18 @@ function App() {
 
   return (
     <div className="container">
-      <Todo task={task} handleOnDrag={handleOnDrag}/>
-      <Done task={task} handleOnDrop={handleOnDrop} handleDragOver={handleDragOver}/>
+      <Todo
+        task={task}
+        handleOnDrag={handleOnDrag}
+        handleOnDrop={handleOnDrop}
+        handleDragOver={handleDragOver}
+      />
+      <Done
+        task={task}
+        handleOnDrag={handleOnDrag}
+        handleOnDrop={handleOnDrop}
+        handleDragOver={handleDragOver}
+      />
     </div>
   );
 }
