@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Todo from "./components/Todo";
+import Done from "./components/Done";
 
 function App() {
   const [task, setTask] = useState({
@@ -30,13 +31,7 @@ function App() {
   return (
     <div className="container">
       <Todo task={task} handleOnDrag={handleOnDrag}/>
-      <div className="done" onDrop={handleOnDrop} onDragOver={handleDragOver} style={task.doneBoard?.length > 2 ? {height: "auto"} : {height: "350px"} }>
-        {task.doneBoard.map((widget, index) => (
-          <div className="card" key={index}>
-            {widget}
-          </div>
-        ))}
-      </div>
+      <Done task={task} handleOnDrop={handleOnDrop} handleDragOver={handleDragOver}/>
     </div>
   );
 }
