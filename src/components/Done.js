@@ -4,6 +4,8 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Stack from '@mui/material/Stack';
+import Chip from '@mui/material/Chip';
 
 export default function Done({
   task,
@@ -43,6 +45,11 @@ export default function Done({
         task.doneBoard?.length > 2 ? { height: "auto" } : { height: "350px" }
       }
     >
+      <Stack direction="row" spacing={1}>
+        <Chip label="Done" sx={{backgroundColor: '#defdfe', color: '#34b0c1', fontWeight: '700'}} />
+        <Chip label="3" variant="outlined" sx={{fontWeight: '700', color: "#34b0c1", border: "1px solid #34b0c1"}} />
+      </Stack>
+
       {task.doneBoard.map(({id, title, description}) => (
         <Card
         className="card"

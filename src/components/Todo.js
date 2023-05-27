@@ -4,6 +4,8 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Stack from '@mui/material/Stack';
+import Chip from '@mui/material/Chip';
 
 export default function Todo({
   task,
@@ -48,6 +50,10 @@ export default function Todo({
           : { height: "350px" }
       }
     >
+      <Stack direction="row" spacing={1}>
+        <Chip label="Todo" sx={{backgroundColor: '#fe8900', color: '#ffeaa4', fontWeight: '700'}} />
+        <Chip label="3" variant="outlined" sx={{fontWeight: '700', color: "#fe8900", border: "1px solid #fe8900"}} />
+      </Stack>
       {task.todoBoard.map(({id, title, description}) => (
         <Card
           className="card"
