@@ -4,26 +4,20 @@ body {
 
 .container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: flex-start;
-  margin-top: 2rem;
+  margin: 2rem;
 }
 
-.todo {
+.todo, .done {
   width: 300px;
   background-color: #f6f6f6;
   padding: 1rem;
-}
-
-.done {
-  width: 300px;
-  background-color: #f6f6f6;
-  padding: 1rem;
-  height: 350px;
+  border-radius: 25px;
+  margin: 1rem;
 }
 
 .card {
   height: 130px;
-  /* background-color: palevioletred; */
   margin: 1rem;
 }
