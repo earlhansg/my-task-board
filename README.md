@@ -10,3 +10,7 @@ In the project directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+### Sample UI
+
+<img src="https://github.com/earlhansg/my-task-board/blob/main/src/images/sampleUI.png" style=" width:70% ; height:60% ">
