@@ -1,5 +1,7 @@
 # My Task Board (React)
 
+This simple application draws inspiration from Trello and primarily emphasizes the drag and drop functionality, including state manipulation.
+
 ## Available Scripts
 
 In the project directory, you can run:
